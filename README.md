@@ -1,5 +1,10 @@
 # Evrone Python Codestyle
 
+## Основные принципы при написании кода
+- **Поддерживаемость** (представьте, сможете ли вы понять свой код через год или через два)
+- **Простота** (между сложным и простым решением следует выбрать простое)
+- **Очевидность** (представьте, когда подключится новый программист, насколько ему будет понятно, почему именно **так** написан этот код)
+
 
 ## Пакетный менеджер
 
@@ -48,6 +53,34 @@ known_django = "django"
 profile = "django"
 src_paths = "app"
 
+```
+
+
+## Pre-commit хуки
+
+[pre-commit](https://pre-commit.com) - фреймворк для управления `pre-commit` хуками
+
+Рекомендуемый конфиг `.pre-commit-config.yaml`:
+
+```yaml
+default_language_version:
+    python: python3.8
+
+repos:
+  - repo: local
+    hooks:
+      - id: black
+        name: black
+        entry: black app
+        language: python
+        exclude: models
+        types: [python]
+
+      - id: isort
+        name: isort
+        entry: isort app
+        language: python
+        types: [python]
 ```
 
 
