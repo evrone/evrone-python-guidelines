@@ -52,6 +52,7 @@ multi_line_output = 3
 known_django = "django"
 profile = "django"
 src_paths = "app"
+lines_after_imports = 2
 
 ```
 
