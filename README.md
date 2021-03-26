@@ -57,6 +57,20 @@ lines_after_imports = 2
 ```
 
 
+[flake8](https://flake8.pycqa.org/en/latest/) - валидатор соответствия PEP8
+
+Рекомендуемый конфиг в `.flake8`:
+```ini
+[flake8]
+max-line-length = 100
+max-complexity = 5
+exclude = .venv,venv,**/migrations/*,snapshots
+per-file-ignores =
+    tests/**: S101
+    **/tests/**: S101
+```
+
+
 ## Pre-commit хуки
 
 [pre-commit](https://pre-commit.com) - фреймворк для управления `pre-commit` хуками
