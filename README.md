@@ -1,5 +1,8 @@
 # Evrone Python Codestyle
 
+![GitHub last commit](https://img.shields.io/github/last-commit/evrone/evrone-python-guidelines?logo=GitHub)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/evrone/evrone-python-guidelines)
+
 [<img src="https://evrone.com/logo/evrone-sponsored-logo.png" width=300>](https://evrone.com/?utm_source=github.com&utm_campaign=evrone-python-codestyle)
 
 ## Основные принципы при написании кода
