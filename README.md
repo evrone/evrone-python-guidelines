@@ -1,5 +1,7 @@
 # Evrone Python Codestyle
 
+[<img src="https://evrone.com/logo/evrone-sponsored-logo.png" width=300>](https://evrone.com/?utm_source=github.com&utm_campaign=evrone-python-codestyle)
+
 ## Основные принципы при написании кода
 - **Поддерживаемость** (представьте, сможете ли вы понять свой код через год или через два)
 - **Простота** (между сложным и простым решением следует выбрать простое)
