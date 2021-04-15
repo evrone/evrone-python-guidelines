@@ -9,12 +9,14 @@
 - [Про код](#про-код)
   - [Основные принципы](#основные-принципы)
   - [Атомарность операций](#атомарность-операций)
+  - [Логические блоки](#логические-блоки)
   - [Размеры методов, функций и модулей](#размеры-методов-функций-и-модулей)
   - [Импорты](#импорты)
   - [Файлы `__init__.py`](#файлы-__init__py)
   - [Докстринги](#докстринги)
 - [Про Pull Request](#про-pull-request)
   - [Создание Pull Request](#создание-pull-request)
+  - [Рефакторинг и Pull Request](#рефакторинг-и-pull-request)
   - [Размер Pull Request](#размер-pull-request)
 - [Про тулинг](#про-тулинг)
   - [Пакетный менеджер (poetry)](#пакетный-менеджер-poetry)
@@ -83,6 +85,64 @@ result = calculate_weather(hello)
 **Почему?** Потому что код становится более читабельным, не нужно исполнять несколько выражений в голове во время чтения кода. Разбитый до простых атомных операций код воспринимается гораздо лучше, чем сложный уан-лайнер. Постарайтесь упростить свой код настолько, насколько это возможно - код чаще читается, чем пишется.
 
 
+### Логические блоки
+
+Постарайтесь делить код на логические блоки - так глазу программиста будет в разы проще прочитать и уловить суть.
+
+Плохо ❌:
+```python
+def register_model(self, app_label, model):
+    model_name = model._meta.model_name
+    app_models = self.all_models[app_label]
+    if model_name in app_models:
+        if (model.__name__ == app_models[model_name].__name__ and
+                model.__module__ == app_models[model_name].__module__):
+            warnings.warn(
+                "Model '%s.%s' was already registered. "
+                "Reloading models is not advised as it can lead to inconsistencies, "
+                "most notably with related models." % (app_label, model_name),
+                RuntimeWarning, stacklevel=2)
+        else:
+            raise RuntimeError(
+                "Conflicting '%s' models in application '%s': %s and %s." %
+                (model_name, app_label, app_models[model_name], model))
+    app_models[model_name] = model
+    self.do_pending_operations(model)
+    self.clear_cache()
+```
+
+Хорошо ✅:
+```python
+def register_model(self, app_label, model):
+    model_name = model._meta.model_name
+    app_models = self.all_models[app_label]
+    
+    if model_name in app_models:
+        if (
+            model.__name__ == app_models[model_name].__name__ and
+            model.__module__ == app_models[model_name].__module__
+        ):
+            warnings.warn(
+                "Model '%s.%s' was already registered. "
+                "Reloading models is not advised as it can lead to inconsistencies, "
+                "most notably with related models." % (app_label, model_name),
+                RuntimeWarning, stacklevel=2)
+            
+        else:
+            raise RuntimeError(
+                "Conflicting '%s' models in application '%s': %s and %s." %
+                (model_name, app_label, app_models[model_name], model))
+        
+    app_models[model_name] = model
+    
+    self.do_pending_operations(model)
+    self.clear_cache()
+```
+
+**Почему?** Кроме того, что это повышает читабельность, [Zen of Python](https://www.python.org/dev/peps/pep-0020/) рассказывает нам о том, как надо писать идиоматический код на Python.
+Одно из высказываний звучит как "Sparse is better than dense." - "Разреженное лучше чем сжатое". Сжатый код сложнее прочитать чем разреженный.
+
+
 ### Размеры методов, функций и модулей
 
 Предельный размер метода или функции - **50** строк.
@@ -137,7 +197,13 @@ from some.absolute.path import foo, bar
 
 Один Pull Request должен решать ровно одно issue.
 
-**Почему?** Потому что ревьюверу сложнее держать контекст нескольких задач в голове и переключаться между ними.
+**Почему?** Потому что ревьюверу сложнее держать контекст нескольких задач в голове и переключаться между ними. Когда PR содержит несколько issue - это часто приводит к тому, что PR увеличивается и требует больше времени и сил на ревью от ревьювера.
+
+
+### Рефакторинг и Pull Request
+Рефакторинг лучше всего выносить в отдельный Pull Request.
+
+**Почему?** Когда рефакторинг идет вместе с решением определенного issue, то рефакторинг размывает контекст issue и вводит правки, которые не имеют отношения к данному PR. 
 
 
 ### Размер Pull Request
