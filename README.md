@@ -19,6 +19,7 @@
   - [Рефакторинг и Pull Request](#рефакторинг-и-pull-request)
   - [Размер Pull Request](#размер-pull-request)
 - [Про тулинг](#про-тулинг)
+  - [Тестирование (pytest)](#тестирование-pytest)
   - [Пакетный менеджер (poetry)](#пакетный-менеджер-poetry)
   - [Форматирование кода (Black)](#форматирование-кода-black)
   - [Форматирование импортов (isort)](#форматирование-импортов-isort)
@@ -229,6 +230,17 @@ from some.absolute.path import foo, bar
 
 
 ## Про тулинг
+
+### Тестирование (pytest)
+[pytest](https://pytest.org) - фреймворк для тестирования кода
+
+Рекомендуемый конфиг в `pytest.ini`:
+```ini
+[pytest]
+DJANGO_SETTINGS_MODULE = settings.dev
+python_files = tests.py test_*.py *_tests.py
+
+```
 
 ### Пакетный менеджер (poetry)
 
