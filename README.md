@@ -237,7 +237,7 @@ from some.absolute.path import foo, bar
 Рекомендуемый конфиг в `pytest.ini`:
 ```ini
 [pytest]
-DJANGO_SETTINGS_MODULE = settings.dev
+DJANGO_SETTINGS_MODULE = settings.local
 python_files = tests.py test_*.py *_tests.py
 
 ```
