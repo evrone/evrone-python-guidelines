@@ -1,4 +1,4 @@
-# Evrone Python Codestyle
+# Evrone Python Guidelines
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/evrone/evrone-python-guidelines?logo=GitHub)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/evrone/evrone-python-guidelines)
