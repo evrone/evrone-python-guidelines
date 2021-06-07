@@ -3,7 +3,6 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/evrone/evrone-python-guidelines?logo=GitHub)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/evrone/evrone-python-guidelines)
 
-[<img src="https://evrone.com/logo/evrone-sponsored-logo.png" width=300>](https://evrone.com/?utm_source=github.com&utm_campaign=evrone-python-codestyle)
 
 ## Содержание
 - [Про код](#про-код)
@@ -359,3 +358,6 @@ repos:
 Схема для OpenAPI должна генерироваться "на лету", чтобы обеспечивать клиентов API свежими изменениями.
 
 **Почему?** Потому что это один из распространенных форматов для документирования REST API, который вышел из Swagger. Данный формат документации поддерживается большим количеством клиентов (Swagger, Postman, Insomnia Designer и многие другие). Также, рукописная документация имеет свойство быстро устаревать, а документация, которая генерируется напрямую из кода позволяет не думать о постоянном обновлении документации.
+
+## Спонсор
+[<img src="https://evrone.com/logo/evrone-sponsored-logo.png" width=300>](https://evrone.com/?utm_source=github.com&utm_campaign=evrone-python-codestyle)
