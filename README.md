@@ -348,6 +348,12 @@ repos:
         entry: isort app
         language: python
         types: [python]
+
+      - id: flake8
+        name: flake8
+        entry: flake8 server
+        language: python
+        types: [python]
 ```
 
 
