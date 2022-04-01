@@ -11,7 +11,7 @@
   - [Docstrings](#docstrings)
 - [About Pull Requests](#about-pull-requests)
   - [Creating Pull Requests](#creating-pull-requests)
-  - [Refactoring and Pull Requests](#refactoring-and-pull-request)
+  - [Refactoring and Pull Requests](#refactoring-and-pull-requests)
   - [Pull Request Size](#pull-request-size)
 - [About tooling](#about-tooling)
   - [Testing (pytest)](#testing-pytest)
