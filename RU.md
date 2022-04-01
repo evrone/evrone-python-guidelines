@@ -1,4 +1,4 @@
-# Evrone Python Guidelines
+# Evrone Python Guidelines (RU)
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/evrone/evrone-python-guidelines?logo=GitHub)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/evrone/evrone-python-guidelines)
@@ -167,13 +167,12 @@ from . import foo, bar
 
 Хорошо ✅:
 ```python
-
 # spam.py
 from some.absolute.path import foo, bar
 ```
 
-**Почему?** Потому что абсолютный импорт явно определяет локацию (путь) модуля, который импортируется. При релативном
-импорте всегда нужно помнить путь и вычислять в уме локацию модулей `foo.py`, `bar.py` относительно `spam.py`
+**Почему?** Потому что абсолютный импорт явно определяет локацию (путь) модуля, который импортируется. 
+При релативном импорте всегда нужно помнить путь и вычислять в уме локацию модулей `foo.py`, `bar.py` относительно `spam.py`
 
 
 ### Файлы `__init__.py`
@@ -238,11 +237,9 @@ from some.absolute.path import foo, bar
 [pytest]
 DJANGO_SETTINGS_MODULE = settings.local
 python_files = tests.py test_*.py *_tests.py
-
 ```
 
 ### Пакетный менеджер (poetry)
-
 [poetry](https://python-poetry.org) - менеджер зависимостей и сборщик пакетов 
 
 
@@ -251,7 +248,6 @@ python_files = tests.py test_*.py *_tests.py
 
 Рекомендуемый конфиг в `pyproject.toml`:
 ```toml
-
 [tool.black]
 line-length = 100
 target-version = ['py38']
@@ -270,7 +266,6 @@ exclude = '''
   |dist
 )
 '''
-
 ```
 
 
@@ -279,7 +274,6 @@ exclude = '''
 
 Рекомендуемый конфиг в `pyproject.toml`:
 ```toml
-
 [tool.isort]
 line_length = 100
 sections = ["FUTURE", "STDLIB", "DJANGO", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
@@ -288,7 +282,6 @@ known_django = "django"
 profile = "django"
 src_paths = "app"
 lines_after_imports = 2
-
 ```
 
 
@@ -308,11 +301,9 @@ per-file-ignores =
 
 
 ### Тайп-чекер (mypy)
-
 [mypy](http://mypy.readthedocs.io) - чекер для статической типизации
 
 Рекомендуемый конфиг `mypy.ini`:
-
 ```ini
 [mypy]
 ignore_missing_imports = True
@@ -320,7 +311,6 @@ allow_untyped_globals = True
 
 [mypy-*.migrations.*]
 ignore_errors = True
-
 ```
 
 
@@ -364,6 +354,7 @@ repos:
 Схема для OpenAPI должна генерироваться "на лету", чтобы обеспечивать клиентов API свежими изменениями.
 
 **Почему?** Потому что это один из распространенных форматов для документирования REST API, который вышел из Swagger. Данный формат документации поддерживается большим количеством клиентов (Swagger, Postman, Insomnia Designer и многие другие). Также, рукописная документация имеет свойство быстро устаревать, а документация, которая генерируется напрямую из кода позволяет не думать о постоянном обновлении документации.
+
 
 ## Спонсор
 [<img src="https://evrone.com/logo/evrone-sponsored-logo.png" width=300>](https://evrone.com/?utm_source=github.com&utm_campaign=evrone-python-codestyle)

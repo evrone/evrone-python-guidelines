@@ -1,4 +1,8 @@
-# Evrone Python Guidelines
+# Evrone Python Guidelines (EN)
+
+![GitHub last commit](https://img.shields.io/github/last-commit/evrone/evrone-python-guidelines?logo=GitHub)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/evrone/evrone-python-guidelines)
+
 
 ## Table of Contents
 - [About the code](#about-the-code)
@@ -30,13 +34,13 @@
 ### Basic principles
 - **Maintainability** (will you be able to understand your code in a year or two?)
 - **Simplicity** (between a complex and a simple solution, you should choose the simple one)
-- **Plainness** (when a new programmer joins, how clear it will be to them why this code is written in this way?)
+- **Plainness** (when a new programmer joins, how clear it will be to them **why** this code is written in this way?)
 
 
 ### Atomicity of operations
 **1 action ~ 1 line**
 
-Try to do atomic operations in your code — there should be exactly one operation on each line.
+Try to do atomic operations in your code — there should be exactly **one** operation on each line.
 
 Bad ❌:
 ```python
@@ -135,15 +139,18 @@ def register_model(self, app_label, model):
     self.clear_cache()
 ```
 
-**Why?** In addition to improving readability, The Zen of Python teaches us how to write idiomatic Python code. One of the statements claims that "sparse is better than dense." Compressed code is harder to read than sparse code.
+**Why?** In addition to improving readability, [The Zen of Python](https://www.python.org/dev/peps/pep-0020/) teaches us how to write idiomatic Python code. 
+One of the statements claims that "sparse is better than dense." Compressed code is harder to read than sparse code.
 
 
 ### Sizes of methods, functions, and modules
 
-The size limit for a method or function is 50 lines. Reaching the size limit indicates that the function (method) is doing too much — so decompose the actions inside the function (method).
+The size limit for a method or function is 50 lines. 
+Reaching the size limit indicates that the function (method) is doing too much — so decompose the actions inside the function (method).
 
 
-The module size limit is 300 lines. Reaching the size limit indicates that the module has received too much logic — so decompose the module into several ones.
+The module size limit is 300 lines. 
+Reaching the size limit indicates that the module has received too much logic — so decompose the module into several ones.
 
 The line length is 100 characters.
 
@@ -164,7 +171,8 @@ Good ✅:
 from some.absolute.path import foo, bar
 ```
 
-**Why?** Because absolute import explicitly defines the location (path) of the module that is being imported. With relative imports, you always need to remember the path and calculate in your mind the location of the modules `foo.py`, `bar.py` relative to `spam.py`
+**Why?** Because absolute import explicitly defines the location (path) of the module that is being imported. 
+With relative imports, you always need to remember the path and calculate in your mind the location of the modules `foo.py`, `bar.py` relative to `spam.py`
 
 
 ### Files `__init__.py`
@@ -176,7 +184,9 @@ Only write imports in `__init__.py` files.
 
 ### Docstrings
 We recommend adding docstrings to functions, methods, and classes.
-**Why?** Because the programmer who sees your code for the first time will be able to quickly understand what is happening in it. Code is read much more than it is written.
+
+**Why?** Because the programmer who sees your code for the first time will be able to quickly understand what is happening in it. 
+Code is read much more than it is written.
 
 
 ## About Pull Requests
@@ -197,6 +207,7 @@ Refactoring is best done in a separate Pull Request.
 
 ### Pull Request Size
 The resulting PR diff should not exceed +/- 600 changed lines.
+
 Bad ❌:
 
 ![bad](https://user-images.githubusercontent.com/8825727/113953748-6fc7ba80-9853-11eb-9673-827995e54f73.png)
@@ -211,7 +222,9 @@ Good ✅:
 Diff 222 + 111 = 333
 ```
  
-**Why?** Because the more PR involves, the more uncontrollable it becomes, and the merge is made "with eyes closed and ears shut." Also, most reviewers will find it difficult to accept a large volume of changes at once.
+
+**Why?** Because the more PR involves, the more uncontrollable it becomes, and the merge is made "with eyes closed and ears shut." 
+Also, most reviewers will find it difficult to accept a large volume of changes at once.
 
 
 ## About tooling
@@ -234,7 +247,7 @@ python_files = tests.py test_*.py *_tests.py
 Black - PEP8 code auto-formatter
 
 Recommended config in `pyproject.toml`:
-```
+```toml
 [tool.black]
 line-length = 100
 target-version = ['py38']
@@ -255,11 +268,12 @@ exclude = '''
 '''
 ```
  
+
 ### Imports formatting (isort)
 [isort](https://pycqa.github.io/isort/) - import block auto-formatter
 
 Recommended config in `pyproject.toml`:
-```
+```toml
 [tool.isort]
 line_length = 100
 sections = ["FUTURE", "STDLIB", "DJANGO", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
@@ -270,6 +284,7 @@ src_paths = "app"
 lines_after_imports = 2
 ```
  
+
 ### Linter (flake8)
 [flake8](https://flake8.pycqa.org/en/latest/) - PEP8 conformance validator
 
@@ -284,11 +299,12 @@ per-file-ignores =
     **/tests/**: S101
 ```
 
+
 ### Type checker (mypy)
 [mypy](http://mypy.readthedocs.io) - checker for static typing
 
 Recommended config `mypy.ini`:
-```
+```ini
 [mypy]
 ignore_missing_imports = True
 allow_untyped_globals = True
@@ -297,6 +313,7 @@ allow_untyped_globals = True
 ignore_errors = True
 ```
  
+
 ### Pre-commit hooks (pre-commit)
 
 [pre-commit](https://pre-commit.com) - framework for managing `pre-commit` hooks
@@ -333,7 +350,8 @@ repos:
 ## Other
 
 ### REST API Documentation
-The recommended documentation format is [OpenAPI](https://www.openapis.org). The schema for OpenAPI should be generated “on the fly” to provide API clients with fresh changes.
+The recommended documentation format is [OpenAPI](https://www.openapis.org). 
+The schema for OpenAPI should be generated “on the fly” to provide API clients with fresh changes.
 
 **Why?** Because it's one of the common formats for documenting REST APIs that come out of Swagger. This documentation format is supported by a large number of clients (Swagger, Postman, Insomnia Designer, and many others). Also, handwritten documentation tends to quickly become outdated, and documentation that is generated directly from the code allows you to avoid constantly thinking about updating the documentation.
 
