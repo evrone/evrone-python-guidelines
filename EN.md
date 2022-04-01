@@ -173,12 +173,14 @@ Refactoring is best done in a separate Pull Request.
 ### Pull Request Size
 The resulting PR diff should not exceed +/- 600 changed lines.
 Bad ❌:
+
 ![bad](https://user-images.githubusercontent.com/8825727/113953748-6fc7ba80-9853-11eb-9673-827995e54f73.png)
 ```
 Diff 444 + 333 = 777
 ```
  
 Good ✅:
+
 ![good](https://user-images.githubusercontent.com/8825727/113953831-a30a4980-9853-11eb-854b-d4c4f6559f2c.png)
 ```
 Diff 222 + 111 = 333
