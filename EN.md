@@ -115,55 +115,99 @@ def register_model(self, app_label, model):
 
 
 ### Sizes of methods, functions, and modules
+
 The size limit for a method or function is 50 lines. Reaching the size limit indicates that the function (method) is doing too much — so decompose the actions inside the function (method).
+
+
 The module size limit is 300 lines. Reaching the size limit indicates that the module has received too much logic — so decompose the module into several ones.
+
 The line length is 100 characters.
-Imports
+
+
+### Imports
+
 The recommended import method is absolute.
+
 Bad ❌:
+```python
 # spam.py
 from . import foo, bar
+```
+
 Good ✅:
+```python
 # spam.py
 from some.absolute.path import foo, bar
-Why? Because absolute import explicitly defines the location (path) of the module that is being imported. With relative imports, you always need to remember the path and calculate in your mind the location of the modules foo.py, bar.py relative to spam.py
-Files __init__.py
-Only write imports in __init__.py files.
-Why? Because __init__.py is the last place a programmer will look when they read the code in the future.
-Docstrings
+```
+
+**Why?** Because absolute import explicitly defines the location (path) of the module that is being imported. With relative imports, you always need to remember the path and calculate in your mind the location of the modules `foo.py`, `bar.py` relative to `spam.py`
+
+
+### Files `__init__.py`
+
+Only write imports in `__init__.py` files.
+
+**Why?** Because `__init__.py` is the last place a programmer will look when they read the code in the future.
+
+
+### Docstrings
 We recommend adding docstrings to functions, methods, and classes.
-Why? Because the programmer who sees your code for the first time will be able to quickly understand what is happening in it. Code is read much more than it is written.
-About Pull Requests
-Creating Pull Requests
-1 Pull Request = 1 issue
+**Why?** Because the programmer who sees your code for the first time will be able to quickly understand what is happening in it. Code is read much more than it is written.
+
+
+## About Pull Requests
+
+### Creating Pull Requests
+**1 Pull Request = 1 issue**
+
 One Pull Request must solve exactly one issue.
-Why? Because it is more difficult for a reviewer to keep the context of several tasks in their head and switch between them. When a PR contains several issues, then the PR often increases and requires more time and effort for the review from the reviewer.
-Refactoring and Pull Requests
+
+**Why?** Because it is more difficult for a reviewer to keep the context of several tasks in their head and switch between them. When a PR contains several issues, then the PR often increases and requires more time and effort for the review from the reviewer.
+
+### Refactoring and Pull Requests
 Refactoring is best done in a separate Pull Request.
-Why? When refactoring goes along with resolving a specific issue, the refactoring blurs the context of the issue and introduces changes that are not related to that PR.
-Pull Request Size
+
+**Why?** When refactoring goes along with resolving a specific issue, the refactoring blurs the context of the issue and introduces changes that are not related to that PR.
+
+
+### Pull Request Size
 The resulting PR diff should not exceed +/- 600 changed lines.
 Bad ❌:
-
+![bad](https://user-images.githubusercontent.com/8825727/113953748-6fc7ba80-9853-11eb-9673-827995e54f73.png)
+```
 Diff 444 + 333 = 777
+```
  
 Good ✅:
+![good](https://user-images.githubusercontent.com/8825727/113953831-a30a4980-9853-11eb-854b-d4c4f6559f2c.png)
+```
 Diff 222 + 111 = 333
+```
  
-Why? Because the more PR involves, the more uncontrollable it becomes, and the merge is made "with eyes closed and ears shut." Also, most reviewers will find it difficult to accept a large volume of changes at once.
-About tooling
-Testing (pytest)
-pytest - code testing framework
-Recommended config in pytest.ini:
+**Why?** Because the more PR involves, the more uncontrollable it becomes, and the merge is made "with eyes closed and ears shut." Also, most reviewers will find it difficult to accept a large volume of changes at once.
+
+
+## About tooling
+
+### Testing (pytest)
+[pytest](https://pytest.org) - code testing framework
+
+Recommended config in `pytest.ini`:
+```ini
 [pytest]
 DJANGO_SETTINGS_MODULE = settings.local
 python_files = tests.py test_*.py *_tests.py
+```
  
-Package manager (poetry)
-poetry - dependency manager and package builder
-Code formatting (Black)
+### Package manager (poetry)
+[poetry](https://python-poetry.org) - dependency manager and package builder
+
+
+### Code formatting (Black)
 Black - PEP8 code auto-formatter
-Recommended config in pyproject.toml:
+
+Recommended config in `pyproject.toml`:
+```
 [tool.black]
 line-length = 100
 target-version = ['py38']
@@ -182,10 +226,13 @@ exclude = '''
   |dist
 )
 '''
+```
  
- Imports formatting (isort)
-isort - import block auto-formatter
-Recommended config in pyproject.toml:
+### Imports formatting (isort)
+[isort](https://pycqa.github.io/isort/) - import block auto-formatter
+
+Recommended config in `pyproject.toml`:
+```
 [tool.isort]
 line_length = 100
 sections = ["FUTURE", "STDLIB", "DJANGO", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
@@ -194,10 +241,13 @@ known_django = "django"
 profile = "django"
 src_paths = "app"
 lines_after_imports = 2
+```
  
-Linter (flake8)
-flake8 - PEP8 conformance validator
-Recommended config in .flake8:
+### Linter (flake8)
+[flake8](https://flake8.pycqa.org/en/latest/) - PEP8 conformance validator
+
+Recommended config in `.flake8`:
+```ini
 [flake8]
 max-line-length = 100
 max-complexity = 5
@@ -205,19 +255,28 @@ exclude = .venv,venv,**/migrations/*,snapshots
 per-file-ignores =
     tests/**: S101
     **/tests/**: S101
-Type checker (mypy)
-mypy - checker for static typing
-Recommended config mypy.ini:
+```
+
+### Type checker (mypy)
+[mypy](http://mypy.readthedocs.io) - checker for static typing
+
+Recommended config `mypy.ini`:
+```
 [mypy]
 ignore_missing_imports = True
 allow_untyped_globals = True
 
 [mypy-*.migrations.*]
 ignore_errors = True
+```
  
-Pre-commit hooks (pre-commit)
-pre-commit - framework for managing pre-commit hooks
-Recommended config .pre-commit-config.yaml:
+### Pre-commit hooks (pre-commit)
+
+[pre-commit](https://pre-commit.com) - framework for managing `pre-commit` hooks
+
+Recommended config `.pre-commit-config.yaml`:
+
+```yaml
 default_language_version:
     python: python3.8
 
@@ -241,9 +300,16 @@ repos:
         entry: flake8 server
         language: python
         types: [python]
-Other
-REST API Documentation
-The recommended documentation format is OpenAPI. The schema for OpenAPI should be generated “on the fly” to provide API clients with fresh changes.
-Why? Because it's one of the common formats for documenting REST APIs that come out of Swagger. This documentation format is supported by a large number of clients (Swagger, Postman, Insomnia Designer, and many others). Also, handwritten documentation tends to quickly become outdated, and documentation that is generated directly from the code allows you to avoid constantly thinking about updating the documentation.
+```
 
 
+## Other
+
+### REST API Documentation
+The recommended documentation format is [OpenAPI](https://www.openapis.org). The schema for OpenAPI should be generated “on the fly” to provide API clients with fresh changes.
+
+**Why?** Because it's one of the common formats for documenting REST APIs that come out of Swagger. This documentation format is supported by a large number of clients (Swagger, Postman, Insomnia Designer, and many others). Also, handwritten documentation tends to quickly become outdated, and documentation that is generated directly from the code allows you to avoid constantly thinking about updating the documentation.
+
+
+## Спонсор
+[<img src="https://evrone.com/logo/evrone-sponsored-logo.png" width=300>](https://evrone.com/?utm_source=github.com&utm_campaign=evrone-python-codestyle)
