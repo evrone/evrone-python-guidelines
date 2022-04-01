@@ -338,5 +338,5 @@ The recommended documentation format is [OpenAPI](https://www.openapis.org). The
 **Why?** Because it's one of the common formats for documenting REST APIs that come out of Swagger. This documentation format is supported by a large number of clients (Swagger, Postman, Insomnia Designer, and many others). Also, handwritten documentation tends to quickly become outdated, and documentation that is generated directly from the code allows you to avoid constantly thinking about updating the documentation.
 
 
-## Спонсор
+## Sponsor
 [<img src="https://evrone.com/logo/evrone-sponsored-logo.png" width=300>](https://evrone.com/?utm_source=github.com&utm_campaign=evrone-python-codestyle)
