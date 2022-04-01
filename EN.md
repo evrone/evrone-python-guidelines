@@ -1,28 +1,28 @@
 # Evrone Python Guidelines
 
 ## Table of Contents
-- [About the code](#про-код)
-  - [Основные принципы](#основные-принципы)
-  - [Атомарность операций](#атомарность-операций)
-  - [Логические блоки](#логические-блоки)
-  - [Размеры методов, функций и модулей](#размеры-методов-функций-и-модулей)
-  - [Импорты](#импорты)
-  - [Файлы `__init__.py`](#файлы-__init__py)
-  - [Докстринги](#докстринги)
-- [Про Pull Request](#про-pull-request)
-  - [Создание Pull Request](#создание-pull-request)
-  - [Рефакторинг и Pull Request](#рефакторинг-и-pull-request)
-  - [Размер Pull Request](#размер-pull-request)
-- [Про тулинг](#про-тулинг)
-  - [Тестирование (pytest)](#тестирование-pytest)
-  - [Пакетный менеджер (poetry)](#пакетный-менеджер-poetry)
-  - [Форматирование кода (Black)](#форматирование-кода-black)
-  - [Форматирование импортов (isort)](#форматирование-импортов-isort)
-  - [Линтер (flake8)](#линтер-flake8)
-  - [Тайп-чекер (mypy)](#тайп-чекер-mypy)
-  - [Pre-commit хуки (pre-commit)](#pre-commit-хуки-pre-commit)
-- [Прочее](#прочее)
-  - [Документация к REST API](#документация-к-rest-api)
+- [About the code](#about-the-code)
+  - [Basic principles](#basic-principles)
+  - [Atomicity of operations](#atomicity-of-operations)
+  - [Logical blocks](#logical-blocks)
+  - [Sizes of methods, functions, and modules](#sizes-of-methods-functions-and-modules)
+  - [Imports](#imports)
+  - [Files `__init__.py`](#files-__init__py)
+  - [Docstrings](#docstrings)
+- [About Pull Request](#about-pull-request)
+  - [Creating Pull Request](#creating-pull-request)
+  - [Refactoring and Pull Requests](#Refactoring-and-pull-request)
+  - [Pull Request Size](#pull-request-size)
+- [About tooling](#about-tooling)
+  - [Testing (pytest)](#Testing-pytest)
+  - [Package manager (poetry)](#package-manager-poetry)
+  - [Code formatting (Black)](#code-formatting-black)
+  - [Imports formatting (isort)](#imports-formatting-isort)
+  - [Linter (flake8)](#linter-flake8)
+  - [Type checker (mypy)](#type checker-mypy)
+  - [Pre-commit hooks (pre-commit)](#pre-commit-hooks-pre-commit)
+- [Other](#other)
+  - [REST API Documentation](#rest-api-documentation)
 
 
 ## About the code
@@ -187,6 +187,7 @@ We recommend adding docstrings to functions, methods, and classes.
 One Pull Request must solve exactly one issue.
 
 **Why?** Because it is more difficult for a reviewer to keep the context of several tasks in their head and switch between them. When a PR contains several issues, then the PR often increases and requires more time and effort for the review from the reviewer.
+
 
 ### Refactoring and Pull Requests
 Refactoring is best done in a separate Pull Request.
