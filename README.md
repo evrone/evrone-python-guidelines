@@ -19,6 +19,6 @@ Coding guidelines are accessible in different languages:
 
 
 ## Sponsor
-Evrone Python Guidelines project is created & supported by [Evrone](https://evrone.com?utm_source=github&utm_medium=python-guidelines)
+Evrone [Python Guidelines](https://evrone.com/python-guidelines?utm_source=github&utm_medium=python-guidelines) project is created & supported by [Evrone](https://evrone.com?utm_source=github&utm_medium=python-guidelines)
 
 [<img src="https://evrone.com/logo/evrone-sponsored-logo.png" width=300>](https://evrone.com?utm_source=github&utm_medium=python-guidelines)
