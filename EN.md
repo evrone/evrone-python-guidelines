@@ -3,6 +3,7 @@
 
 ## Table of Contents
 - [About the code](#about-the-code)
+  - [Rule template](#rule-template)
   - [Basic principles](#basic-principles)
   - [Atomicity of operations](#atomicity-of-operations)
   - [Logical blocks](#logical-blocks)
@@ -24,6 +25,26 @@
   - [Pre-commit hooks (pre-commit)](#pre-commit-hooks-pre-commit)
 - [Other](#other)
   - [REST API Documentation](#rest-api-documentation)
+
+## Rule template
+
+Describe the rule with necessary details and context. Provide `bad`, `good` with examples if possible. Helpful comments to snippets are highly appreciated.
+
+Bad ❌:
+
+```python
+# snippet with bad example
+```
+
+Good ✅:
+
+```python
+# snippet with good example
+```
+
+**Why?**
+
+Section is required and should contain reasons and arguments. It is recommended to provide links issues/resources/stackoveflow for specified reasons and arguments.
 
 
 ## About the code
