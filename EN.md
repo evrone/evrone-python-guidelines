@@ -15,13 +15,6 @@
   - [Refactoring and Pull Requests](#refactoring-and-pull-requests)
   - [Pull Request Size](#pull-request-size)
 - [About tooling](#about-tooling)
-  - [Testing (pytest)](#testing-pytest)
-  - [Package manager (poetry)](#package-manager-poetry)
-  - [Code formatting (Black)](#code-formatting-black)
-  - [Imports formatting (isort)](#imports-formatting-isort)
-  - [Linter (flake8)](#linter-flake8)
-  - [Type checker (mypy)](#type-checker-mypy)
-  - [Pre-commit hooks (pre-commit)](#pre-commit-hooks-pre-commit)
 - [Other](#other)
   - [REST API Documentation](#rest-api-documentation)
 
@@ -223,126 +216,18 @@ Diff 222 + 111 = 333
 **Why?** Because the more PR involves, the more uncontrollable it becomes, and the merge is made "with eyes closed and ears shut." 
 Also, most reviewers will find it difficult to accept a large volume of changes at once.
 
-
 ## About tooling
 
-### Testing (pytest)
-[pytest](https://pytest.org) - code testing framework
+Relevant configs are stored in [evrone-django-template](https://github.com/evrone/evrone-django-template) project template.
 
-Recommended config in `pytest.ini`:
-```ini
-[pytest]
-DJANGO_SETTINGS_MODULE = settings.local
-python_files = tests.py test_*.py *_tests.py
-```
- 
-### Package manager (poetry)
-[poetry](https://python-poetry.org) - dependency manager and package builder
-
-
-### Code formatting (Black)
-Black - PEP8 code auto-formatter
-
-Recommended config in `pyproject.toml`:
-```toml
-[tool.black]
-line-length = 100
-target-version = ['py38']
-exclude = '''
-(
-  \.eggs
-  |\.git
-  |\.hg
-  |\.mypy_cache
-  |\.nox
-  |\.tox
-  |\.venv
-  |_build
-  |buck-out
-  |build
-  |dist
-)
-'''
-```
- 
-
-### Imports formatting (isort)
-[isort](https://pycqa.github.io/isort/) - import block auto-formatter
-
-Recommended config in `pyproject.toml`:
-```toml
-[tool.isort]
-line_length = 100
-sections = ["FUTURE", "STDLIB", "DJANGO", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
-multi_line_output = 3
-known_django = "django"
-profile = "django"
-src_paths = "app"
-lines_after_imports = 2
-```
- 
-
-### Linter (flake8)
-[flake8](https://flake8.pycqa.org/en/latest/) - PEP8 conformance validator
-
-Recommended config in `.flake8`:
-```ini
-[flake8]
-max-line-length = 100
-max-complexity = 5
-exclude = .venv,venv,**/migrations/*,snapshots
-per-file-ignores =
-    tests/**: S101
-    **/tests/**: S101
-```
-
-
-### Type checker (mypy)
-[mypy](http://mypy.readthedocs.io) - checker for static typing
-
-Recommended config `mypy.ini`:
-```ini
-[mypy]
-ignore_missing_imports = True
-allow_untyped_globals = True
-
-[mypy-*.migrations.*]
-ignore_errors = True
-```
- 
-
-### Pre-commit hooks (pre-commit)
-
-[pre-commit](https://pre-commit.com) - framework for managing `pre-commit` hooks
-
-Recommended config `.pre-commit-config.yaml`:
-
-```yaml
-default_language_version:
-    python: python3.8
-
-repos:
-  - repo: local
-    hooks:
-      - id: black
-        name: black
-        entry: black app
-        language: python
-        types: [python]
-
-      - id: isort
-        name: isort
-        entry: isort app
-        language: python
-        types: [python]
-
-      - id: flake8
-        name: flake8
-        entry: flake8 server
-        language: python
-        types: [python]
-```
-
+- [pytest](https://pytest.org) - code testing framework, [config example](https://github.com/evrone/evrone-django-template/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/pytest.ini)
+- [poetry](https://python-poetry.org) - dependency manager and package builder, [pyproject.toml example](https://github.com/evrone/evrone-django-template/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/pyproject.toml)
+- [black](https://black.readthedocs.io/en/stable/) - PEP8 code auto-formatter, [config example](https://github.com/evrone/evrone-django-template/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/pyproject.toml#L42-L59)
+ - [isort](https://pycqa.github.io/isort/) - import block auto-formatter, [config example](https://github.com/evrone/evrone-django-template/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/pyproject.toml#L61-L68)
+- [flake8](https://flake8.pycqa.org/en/latest/) - PEP8 conformance validator and linter, [config example](https://github.com/evrone/evrone-django-template/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/pyproject.toml#L95-L186)
+- [pylint](https://pylint.readthedocs.io/en/latest/) - static code analyser, It checks for errors, enforces a coding standard, looks for code smells, and can make suggestions about how the code could be refactored, [config example](https://github.com/evrone/evrone-django-template/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/pyproject.toml#L189-L269)
+- [mypy](http://mypy.readthedocs.io) - checker for static typing, [config example](https://github.com/evrone/evrone-django-template/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/pyproject.toml#L89-L90), [example run command with extra arguments](https://github.com/evrone/evrone-django-template/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/Makefile#L75)
+- [pre-commit](https://pre-commit.com) - framework for managing `pre-commit` hooks, [config example](https://github.com/evrone/evrone-django-template/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/.pre-commit-config.yaml)
 
 ## Other
 

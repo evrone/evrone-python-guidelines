@@ -15,13 +15,6 @@
   - [Рефакторинг и Pull Request](#рефакторинг-и-pull-request)
   - [Размер Pull Request](#размер-pull-request)
 - [Про тулинг](#про-тулинг)
-  - [Тестирование (pytest)](#тестирование-pytest)
-  - [Пакетный менеджер (poetry)](#пакетный-менеджер-poetry)
-  - [Форматирование кода (Black)](#форматирование-кода-black)
-  - [Форматирование импортов (isort)](#форматирование-импортов-isort)
-  - [Линтер (flake8)](#линтер-flake8)
-  - [Тайп-чекер (mypy)](#тайп-чекер-mypy)
-  - [Pre-commit хуки (pre-commit)](#pre-commit-хуки-pre-commit)
 - [Прочее](#прочее)
   - [Документация к REST API](#документация-к-rest-api)
 
@@ -223,126 +216,18 @@ from some.absolute.path import foo, bar
 **Почему?** Потому что чем больше PR - тем более он становится неконтролируемым и мерж производится "закрыв глаза и заткнув уши". 
 Также, большинству ревьюверов будет сложно воспринять такой объем изменений за один раз.
 
-
 ## Про тулинг
 
-### Тестирование (pytest)
-[pytest](https://pytest.org) - фреймворк для тестирования кода
+Актуальные версии конфигов хранятся в [evrone-django-template](https://github.com/evrone/evrone-django-template).
 
-Рекомендуемый конфиг в `pytest.ini`:
-```ini
-[pytest]
-DJANGO_SETTINGS_MODULE = settings.local
-python_files = tests.py test_*.py *_tests.py
-```
-
-### Пакетный менеджер (poetry)
-[poetry](https://python-poetry.org) - менеджер зависимостей и сборщик пакетов 
-
-
-### Форматирование кода (Black)
-[Black](https://black.readthedocs.io/en/stable/) - автоформаттер кода по PEP8
-
-Рекомендуемый конфиг в `pyproject.toml`:
-```toml
-[tool.black]
-line-length = 100
-target-version = ['py38']
-exclude = '''
-(
-  \.eggs
-  |\.git
-  |\.hg
-  |\.mypy_cache
-  |\.nox
-  |\.tox
-  |\.venv
-  |_build
-  |buck-out
-  |build
-  |dist
-)
-'''
-```
-
-
-### Форматирование импортов (isort)
-[isort](https://pycqa.github.io/isort/) - автоформаттер блока импортов
-
-Рекомендуемый конфиг в `pyproject.toml`:
-```toml
-[tool.isort]
-line_length = 100
-sections = ["FUTURE", "STDLIB", "DJANGO", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
-multi_line_output = 3
-known_django = "django"
-profile = "django"
-src_paths = "app"
-lines_after_imports = 2
-```
-
-
-### Линтер (flake8)
-[flake8](https://flake8.pycqa.org/en/latest/) - валидатор соответствия PEP8
-
-Рекомендуемый конфиг в `.flake8`:
-```ini
-[flake8]
-max-line-length = 100
-max-complexity = 5
-exclude = .venv,venv,**/migrations/*,snapshots
-per-file-ignores =
-    tests/**: S101
-    **/tests/**: S101
-```
-
-
-### Тайп-чекер (mypy)
-[mypy](http://mypy.readthedocs.io) - чекер для статической типизации
-
-Рекомендуемый конфиг `mypy.ini`:
-```ini
-[mypy]
-ignore_missing_imports = True
-allow_untyped_globals = True
-
-[mypy-*.migrations.*]
-ignore_errors = True
-```
-
-
-### Pre-commit хуки (pre-commit)
-
-[pre-commit](https://pre-commit.com) - фреймворк для управления `pre-commit` хуками
-
-Рекомендуемый конфиг `.pre-commit-config.yaml`:
-
-```yaml
-default_language_version:
-    python: python3.8
-
-repos:
-  - repo: local
-    hooks:
-      - id: black
-        name: black
-        entry: black app
-        language: python
-        types: [python]
-
-      - id: isort
-        name: isort
-        entry: isort app
-        language: python
-        types: [python]
-
-      - id: flake8
-        name: flake8
-        entry: flake8 server
-        language: python
-        types: [python]
-```
-
+- [pytest](https://pytest.org) - фреймворк для тестирования кода, [пример конфига](https://github.com/evrone/evrone-django-template/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/pytest.ini)
+- [poetry](https://python-poetry.org) - менеджер зависимостей и сборщик пакетов, [пример pyproject.toml](https://github.com/evrone/evrone-django-template/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/pyproject.toml)
+- [black](https://black.readthedocs.io/en/stable/) - PEP8 автоформаттер кода, [пример конфига](https://github.com/evrone/evrone-django-template/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/pyproject.toml#L42-L59)
+ - [isort](https://pycqa.github.io/isort/) - автоформаттер импортов, [пример конфига](https://github.com/evrone/evrone-django-template/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/pyproject.toml#L61-L68)
+- [flake8](https://flake8.pycqa.org/en/latest/) - валидатор соответствия PEP8, [пример конфига](https://github.com/evrone/evrone-django-template/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/pyproject.toml#L95-L186)
+- [pylint](https://pylint.readthedocs.io/en/latest/) - статический анализатор кода. Проверяет наличие ошибок, обеспечивает соблюдение стандартов, ищет подозрительный код и дает рекомендации по рефакторингу, [пример конфига](https://github.com/evrone/evrone-django-template/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/pyproject.toml#L189-L269)
+- [mypy](http://mypy.readthedocs.io) - валидатор аннотации типов, [пример конфига](https://github.com/evrone/evrone-django-template/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/pyproject.toml#L89-L90), [пример команды для запуска с дополнительными аргументами](https://github.com/evrone/evrone-django-template/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/Makefile#L75)
+- [pre-commit](https://pre-commit.com) - фреймворк для управления `pre-commit` хуками, [пример конфига](https://github.com/evrone/evrone-django-template/blob/master/%7B%7Bcookiecutter.project_name%7D%7D/.pre-commit-config.yaml)
 
 ## Прочее
 
