@@ -82,6 +82,12 @@ result = calculate_weather(hello)
 **Why?** Because the code becomes more readable, and there is no need to execute several statements in your head while reading the code. Code broken down into simple atomic operations is perceived much better than complex one-liners. Try to simplify your code as much as possible — code is more often read than written.
 
 
+**Notes**:
+
+* `ORM` syntax like `Model.objects.filter(...).select_related(...).distinct()` is a different story and it will be discussed in separate rule
+* Rule was written before [PEP-678](https://peps.python.org/pep-0678/). Try to figure out the error if an exception is thrown in such a chain `foo.bar.bar.bar.bar.bar.bar.bar` (`nonetype object has no attribute bar`)
+
+
 ### Logical blocks
 
 Try to divide the code into logical blocks — this way it will be much easier for the programmer to read and understand the essence.
