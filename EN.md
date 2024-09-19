@@ -186,6 +186,13 @@ We recommend adding docstrings to functions, methods, and classes.
 Code is read much more than it is written.
 
 
+### Type Annotations
+
+Annotating new code is strongly encouraged. Existing codebase is recommended to annotate gradually. It is also advised to use `static type checker` on `pre-commit` or `CI` stage but allow proceeding with invalid annotations because sometimes it takes a lot of effort to debug and annotate code.
+
+**Why?** Typed code is better self-documented. There is no need to guess the object's type or use `isinstance`, modern IDEs work perfectly with annotated object types. Moreover, annotations reduce error rate. Warnings and errors are shown by `static type checker` during coding instead of catching errors on running project. Unit testing is also much easier if you know what types are expected.
+
+
 ## About Pull Requests
 
 ### Creating Pull Requests
